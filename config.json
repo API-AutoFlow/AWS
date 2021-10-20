@@ -1,1 +1,207 @@
-{"Data":[],"Flow":[],"FlowTest":[],"Inbound":[{"id":"<1598255607840639000.0.872006981.293339143.154277>","value":{"name":"guardduty","port":1111,"tls":null,"type":"http server"}}],"InboundEndpoint":[{"id":"<1597363074982434000.0.11814055.4161273863.105607>","index":[null],"value":{"method":"GET","name":"endpoint","path":"/api/user/info","type":"endpoint"}},{"id":"<1598255607841286000.0.872006981.293339143.154301>","index":[null],"value":{"default-test":null,"method":"GET","name":"endpoint","path":"/api/user/info","type":"endpoint"}},{"id":"<1598255607842713000.0.872006981.293339143.154344>","index":[null],"value":{"default-test":null,"method":"GET","name":"endpoint","path":"/api/user/info","type":"endpoint"}},{"id":"<1598255607842338000.0.872006981.293339143.154329>","index":[null],"value":{"default-test":null,"method":"GET","name":"endpoint","path":"/api/user/info","type":"endpoint"}},{"id":"<1598255607841109000.0.872006981.293339143.154293>","index":["<1598255607840639000.0.872006981.293339143.154277>"],"value":{"default-test":"<1597685003571661000.0.832584652.3066822657.151897>","method":"GET","name":"guardduty-json","path":"/guardduty","serve-files":null,"type":"endpoint"}},{"id":"<1597422391154713000.0.3208541405.2437152769.92665>","index":[null],"value":{"method":"GET","name":"endpoint","path":"/api/user/info","type":"endpoint"}},{"id":"<1597126000070172000.0.2468548327.2208301064.76827>","index":[null],"value":{"method":"GET","name":"endpoint","path":"/api/user/info","type":"endpoint"}},{"id":"<1597351318387884000.0.4202824760.105381889.207832>","index":[null],"value":{"method":"GET","name":"endpoint","path":"/api/user/info","type":"endpoint"}},{"id":"<1597427838508174000.0.1023260349.840171523.130469>","index":[null],"value":{"method":"GET","name":"endpoint","path":"/api/user/info","type":"endpoint"}}],"InboundEndpointFlow":[{"id":"<1597363074982434000.0.11814055.4161273863.105607>","index":[null],"value":[{"$action":"communication/http-request","body":"","header":{},"method":"GET","query":{},"response-target":{"__LDATA__":["result"]},"url":"http://192.168.50.194:1111/service1"},{"$action":"data/set","target":{"__LDATA__":["response","body"]},"value":"ABC"}]},{"id":"<1598255607841286000.0.872006981.293339143.154301>","index":[null],"value":[{"$action":"communication/http-request","body":"","header":{},"method":"GET","query":{},"response-target":{"__LDATA__":["result"]},"url":"http://192.168.50.194:1111/service1"},{"$action":"data/set","target":{"__LDATA__":["response","body"]},"value":"ABC"}]},{"id":"<1598255607842713000.0.872006981.293339143.154344>","index":[null],"value":[{"$action":"communication/http-request","body":"","header":{},"method":"GET","query":{},"response-target":{"__LDATA__":["result"]},"url":"http://192.168.50.194:1111/service1"},{"$action":"data/set","target":{"__LDATA__":["response","body"]},"value":"ABC"}]},{"id":"<1598255607842338000.0.872006981.293339143.154329>","index":[null],"value":[{"$action":"communication/http-request","body":"","header":{},"method":"GET","query":{},"response-target":{"__LDATA__":["result"]},"url":"http://192.168.50.194:1111/service1"},{"$action":"data/set","target":{"__LDATA__":["response","body"]},"value":"ABC"}]},{"id":"<1598255607841109000.0.872006981.293339143.154293>","index":["<1598255607840639000.0.872006981.293339143.154277>"],"value":[{"$action":"communication/http-request","body":"","header":{},"method":"GET","mock-result":{"body":"","headers":{},"status-code":200},"name":"grabbing guardduty data","output-location":{"__LDATA__":["result"]},"query":{},"timeout":5000,"url":"https://autoflow-files.s3-us-west-2.amazonaws.com/guardduty+data.json","use-mock-result":false},{"$action":"json/decode","json":{"__LDATA__":["result","body"]},"output-location":{"__LDATA__":["result1"]}},{"$action":"data/set","at-location":{"__LDATA__":["guardduty"]},"value":[]},{"$action":"iteration/for-each","array":{"__LDATA__":["result1"]},"do":[{"$action":"conditional/match","items":[{"conditions":[{"$condition":"number/is-greater-or-equal","name":"condition1","target":{"__LDATA__":[]},"value":2}],"do":[{"$action":"array/insert-at","array":{"__LDATA__":["guardduty"]},"index":0,"output-location":{"__LDATA__":["guardduty"]},"value":{"city":{"__LDATA__":["value","service","action","awsApiCallAction","remoteIpDetails","city","cityName"]},"resource-type":{"__LDATA__":["value","resource","resourceType"]}}}],"name":"match1"}],"name":"matched-severity-2","target":{"__LDATA__":["value","severity"]}}],"index-location":{"__LDATA__":["index"]},"value-location":{"__LDATA__":["value"]}},{"$action":"data/set","at-location":{"__LDATA__":["response","body"]},"value":{"__LDATA__":["guardduty"]}}]},{"id":"<1597422391154713000.0.3208541405.2437152769.92665>","index":[null],"value":[{"$action":"communication/http-request","body":"","header":{},"method":"GET","query":{},"response-target":{"__LDATA__":["result"]},"url":"http://192.168.50.194:1111/service1"},{"$action":"data/set","target":{"__LDATA__":["response","body"]},"value":"ABC"}]},{"id":"<1597126000070172000.0.2468548327.2208301064.76827>","index":[null],"value":[{"$action":"communication/http-request","body":"","header":{},"method":"GET","query":{},"response-target":{"__LDATA__":["result"]},"url":"http://192.168.50.194:1111/service1"},{"$action":"data/set","target":{"__LDATA__":["response","body"]},"value":"ABC"}]},{"id":null,"index":[null],"value":[{"$action":"array/chunk","array":{"__LDATA__":[]},"count":0,"leftover":[],"output-location":{"__LDATA__":[]},"step":0}]},{"id":"<1597351318387884000.0.4202824760.105381889.207832>","index":[null],"value":[{"$action":"communication/http-request","body":"","header":{},"method":"GET","query":{},"response-target":{"__LDATA__":["result"]},"url":"http://192.168.50.194:1111/service1"},{"$action":"data/set","target":{"__LDATA__":["response","body"]},"value":"ABC"}]},{"id":"<1597427838508174000.0.1023260349.840171523.130469>","index":[null],"value":[{"$action":"communication/http-request","body":"","header":{},"method":"GET","query":{},"response-target":{"__LDATA__":["result"]},"url":"http://192.168.50.194:1111/service1"},{"$action":"data/set","target":{"__LDATA__":["response","body"]},"value":"ABC"}]}],"InboundEndpointTest":[{"id":"<1598255607847572000.0.872006981.293339138.150480>","index":["<1598255607840639000.0.872006981.293339143.154277>","<1598255607841109000.0.872006981.293339143.154293>"],"value":{"name":"default-test-input","request":{"body":"","header":{},"path":{},"query":{}}}}],"Variable":[]}
+{
+  "$product": {
+    "deployment_mode": "SOLO",
+    "name": "API AutoFlow",
+    "version": "2.1.16"
+  },
+  "Flow": [
+    {
+      "default-test": "<1597685003571661000.0.832584652.3066822657.151897>",
+      "flow": [
+        {
+          "$action": "communication/http-request",
+          "body": "",
+          "header": {},
+          "method": "GET",
+          "mock-result": {
+            "body": "",
+            "headers": {},
+            "status-code": 200
+          },
+          "name": "grabbing guardduty data",
+          "output-location": {
+            "__LDATA__": [
+              "result"
+            ]
+          },
+          "query": {},
+          "timeout": 5000,
+          "url": "https://autoflow-files.s3-us-west-2.amazonaws.com/guardduty+data.json",
+          "use-mock-result": false
+        },
+        {
+          "$action": "json/decode",
+          "json": {
+            "__LDATA__": [
+              "result",
+              "body"
+            ]
+          },
+          "output-location": {
+            "__LDATA__": [
+              "result1"
+            ]
+          }
+        },
+        {
+          "$action": "data/set",
+          "at-location": {
+            "__LDATA__": [
+              "guardduty"
+            ]
+          },
+          "value": []
+        },
+        {
+          "$action": "iteration/for-each",
+          "array": {
+            "__LDATA__": [
+              "result1"
+            ]
+          },
+          "do": [
+            {
+              "$action": "conditional/match",
+              "items": [
+                {
+                  "conditions": [
+                    {
+                      "$condition": "number/is-greater-or-equal",
+                      "name": "condition1",
+                      "target": {
+                        "__LDATA__": []
+                      },
+                      "value": 2
+                    }
+                  ],
+                  "do": [
+                    {
+                      "$action": "array/insert-at",
+                      "array": {
+                        "__LDATA__": [
+                          "guardduty"
+                        ]
+                      },
+                      "index": 0,
+                      "output-location": {
+                        "__LDATA__": [
+                          "guardduty"
+                        ]
+                      },
+                      "value": {
+                        "city": {
+                          "__LDATA__": [
+                            "value",
+                            "service",
+                            "action",
+                            "awsApiCallAction",
+                            "remoteIpDetails",
+                            "city",
+                            "cityName"
+                          ]
+                        },
+                        "resource-type": {
+                          "__LDATA__": [
+                            "value",
+                            "resource",
+                            "resourceType"
+                          ]
+                        }
+                      }
+                    }
+                  ],
+                  "name": "match1"
+                }
+              ],
+              "name": "matched-severity-2",
+              "target": {
+                "__LDATA__": [
+                  "value",
+                  "severity"
+                ]
+              }
+            }
+          ],
+          "index-location": {
+            "__LDATA__": [
+              "index"
+            ]
+          },
+          "value-location": {
+            "__LDATA__": [
+              "value"
+            ]
+          }
+        },
+        {
+          "$action": "data/set",
+          "at-location": {
+            "__LDATA__": [
+              "response",
+              "body"
+            ]
+          },
+          "value": {
+            "__LDATA__": [
+              "guardduty"
+            ]
+          }
+        }
+      ],
+      "id": "78d02e5c-0c51-4ad1-94e8-1c68dfb1647a"
+    }
+  ],
+  "Inbound": [
+    {
+      "id": "<1598255607840639000.0.872006981.293339143.154277>",
+      "port": 1111,
+      "tls": null,
+      "type": "http server"
+    }
+  ],
+  "InboundEndpoint": [
+    {
+      "default-test": "<1597685003571661000.0.832584652.3066822657.151897>",
+      "id": "<1598255607841109000.0.872006981.293339143.154293>",
+      "method": "GET",
+      "path": "/guardduty",
+      "serve-files": null,
+      "type": "endpoint"
+    }
+  ],
+  "ResourceInfo": [
+    {
+      "id": "78d02e5c-0c51-4ad1-94e8-1c68dfb1647a",
+      "parentId": "<1598255607841109000.0.872006981.293339143.154293>",
+      "resourceType": "Flow"
+    },
+    {
+      "id": "<1598255607847572000.0.872006981.293339138.150480>",
+      "parentId": "78d02e5c-0c51-4ad1-94e8-1c68dfb1647a",
+      "resourceType": "Test",
+      "title": "default-test-input"
+    },
+    {
+      "id": "<1598255607840639000.0.872006981.293339143.154277>",
+      "resourceType": "Inbound",
+      "title": "guardduty"
+    },
+    {
+      "id": "<1598255607841109000.0.872006981.293339143.154293>",
+      "parentId": "<1598255607840639000.0.872006981.293339143.154277>",
+      "resourceType": "InboundEndpoint",
+      "title": "guardduty-json"
+    }
+  ],
+  "Test": [
+    {
+      "id": "<1598255607847572000.0.872006981.293339138.150480>",
+      "value": {
+        "body": "",
+        "header": {},
+        "path": {},
+        "query": {}
+      }
+    }
+  ]
+}
